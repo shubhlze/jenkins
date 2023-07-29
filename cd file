@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git checkout') {
+            steps {
+                git credentialsId: 'ae8c29a8-276e-47bd-b0f6-80b5ee9beb11', url: 'https://github.com/Pritam-Khergade/FDEC-B1.git'
+            }
+        }
+         stage('tf init') {
+            steps {
+                sh 'sudo terraform init'
+                sh 'sudo terraform plan'
+                sh 'sudo teraform apply -auto-approve'
+              
+            }
+        }
+    }
+}
